@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeTable 7th sem</title>
+    <link rel="icon" href="https://cdn1.iconfinder.com/data/icons/medical-color-filled-line-part-1/160/26-512.png">
+    <style>
+        
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.42em;
+  color:#A7A1AE;
+  background-color:#1F2739;
+}
+
+h1 {
+  font-size:3em; 
+  font-weight: 300;
+  line-height:1em;
+  text-align: center;
+  color: #4DC3FA;
+}
+
+h2 {
+  font-size:1em; 
+  font-weight: 300;
+  text-align: center;
+  display: block;
+  line-height:1em;
+  padding-bottom: 2em;
+  color: #FB667A;
+}
+
+h2 a {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FB667A;
+  text-decoration: none;
+}
+
+.blue { color: #185875; }
+.yellow { color: #FFF842; }
+
+.container th h1 {
+	  font-weight: bold;
+	  font-size: 1em;
+  text-align: left;
+  color: #185875;
+}
+
+.container td {
+	  font-weight: normal;
+	  font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+	   -moz-box-shadow: 0 2px 2px -2px #0E1119;
+	        box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.container 
+{
+	  text-align: left;
+	  overflow: hidden;
+	  width: 80%;
+	  margin: 0 auto;
+  display: table;
+  padding: 0 0 8em 0;
+}
+
+.container td, .container th {
+	  padding-bottom: 2%;
+	  padding-top: 2%;
+  padding-left:2%;  
+}
+
+/* Background-color of the odd rows */
+.container tr:nth-child(odd) {
+	  background-color: #323C50;
+}
+
+/* Background-color of the even rows */
+.container tr:nth-child(even) {
+	  background-color: #2C3446;
+}
+
+.container th {
+	  background-color: #1F2739;
+}
+
+.container td:first-child { color: #FB667A; }
+
+.container tr:hover {
+   background-color: #464A52;
+-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
+	        box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.container td:hover {
+  background-color: #FFF842;
+  color: #403E10;
+  font-weight: bold;
+  
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  
+  transition-delay: 0s;
+	  transition-duration: 0.4s;
+	  transition-property: all;
+  transition-timing-function: line;
+}
+
+@media (max-width: 800px) {
+.container td:nth-child(4),
+.container th:nth-child(4) { display: none; }
+}
+.modal {
+  will-change: visibility, opacity;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition-delay: $modal-delay;
+}
+.modal--active {
+  visibility: visible;
+  opacity: 1;
+}
+.modal--align-top {
+  align-items: flex-start;
+}
+.modal__bg {
+  background: transparent;
+}
+.modal__dialog {
+  max-width: 600px;
+  padding: 1.2rem;
+}
+.modal__content {
+  will-change: transform, opacity;
+  position: relative;
+  padding: 2.4rem;
+  background-clip: padding-box;
+  box-shadow: 0 12px 15px 0 rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.modal__content--active {
+  opacity: 1;
+}
+.modal__close {
+  z-index: 1100;
+  cursor: pointer;
+}
+.modal__trigger {
+  position: relative;
+  display: inline-block;
+  padding: 1.2rem 2.4rem;
+  color: rgba(0,0,0,0.7);
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.modal__trigger--active {
+  z-index: 10;
+}
+
+#modal__temp {
+  will-change: transform, opacity;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: none;
+  opacity: 1;
+  transition: opacity 0.1s ease-out, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+tbody td a 
+{
+    color:   #6A967D;
+    text-decoration: none;
+    font-weight: bolder;
+    display: block;
+}
+
+    </style>
+</head>
+<body>
+    <h1><span class="blue">&lt;</span>CSE B BATCH 2<span class="blue">&gt;</span> <span class="yellow">TIMETABLE</pan></h1>
+        <h2>Made with 💚 by <a href="https://www.linkedin.com/in/preethishashikumar/?originalSubdomain=in" target="_blank">Preethi Shashikumar</a></h2>
+        
+        
+        <table class="container">
+            <thead>
+                <tr>
+                    <th><h1>PERIOD</h1></th>
+                    <th><h1>10:00 - 11:00</h1></th>
+                    <th><h1>11:00 - 12:00</h1></th>
+                    <th><h1>2:00 - 3:00</h1></th>
+                    <th><h1>3:00 - 4:00</h1></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>DAY-1</td>
+                    <td><a href ="https://meet.google.com/lookup/c4hlgzpwmy" target="_blank">IR</a></td>
+                    <td><a href ="https://meet.google.com/lookup/dtx5e46mog" target="_blank">IOT</a></td>
+                    <td style="background-color: inherit; opacity: 1.0; color: #4DC3FA;">OE-1</a></td>
+                    <td><a href ="https://meet.google.com/lookup/eleyr52gqc" target="_blank">CB</a></td>
+
+                </tr>
+                <tr>
+                    <td>DAY-2</td>
+                    <td><a href ="https://meet.google.com/lookup/f3bik4zbua" target="_blank">DWDM</a></td>
+                    <td><a href ="https://meet.google.com/lookup/eleyr52gqc" target="_blank">CB</a></td>
+                    <td><a href ="https://meet.google.com/lookup/c4hlgzpwmy" target="_blank">IR</a></td>
+                    <td style="background-color: inherit; opacity: 1.0; color: #4DC3FA;">OE-2</a></td>
+                </tr>
+                <tr>
+                    <td>DAY-3</td>
+                    <td><a href ="https://meet.google.com/lookup/f3bik4zbua" target="_blank">DWDM</a></td>
+                    <td style="background-color: inherit; opacity: 1.0; color: #4DC3FA;">OE-1</a></td>
+                    <td colspan="2" style="background-color:   #194950; opacity: 1.0; text-align: center;">
+                        <a href ="https://meet.google.com/lookup/apihtt4bam" target="_blank">IOT LAB</a></td>
+                </tr>
+                <tr>
+                    <td>DAY-4</td>
+                    <td style="background-color: inherit; opacity: 1.0;color: #4DC3FA;">OE-1</a></td>
+                    <td><a href ="https://meet.google.com/lookup/eleyr52gqc" target="_blank">CB</a></td>
+                    <td style="background-color: inherit; opacity: 1.0; color: #4DC3FA;">OE-2</a></td>
+                    <td><a href ="https://meet.google.com/lookup/dtx5e46mog" target="_blank">IOT</a></td>
+                </tr>
+                <tr>
+                    <td>DAY-5</td>
+                    <td><a href ="https://meet.google.com/lookup/c4hlgzpwmy" target="_blank">IR</a></td>
+                    <td style="background-color: inherit; opacity: 1.0;color: #4DC3FA;">OE-2</a></td>
+                    <td colspan="2" style="background-color:   #194950; opacity: 1.0; text-align: center;">
+                        <a href ="https://meet.google.com/lookup/chixi53uq6" target="_blank">PROJECT</a></td>
+                </tr>
+                <tr>
+                    <td>DAY-6</td>
+                    <td><a href ="https://meet.google.com/lookup/dtx5e46mog" target="_blank">IOT</a></td>
+                    <td><a href ="https://meet.google.com/lookup/f3bik4zbua" target="_blank">DWDM</a></td>
+                    <td><a href ="https://meet.google.com/lookup/eleyr52gqc" target="_blank">CB</a></td>
+                    <td style="background-color:   #194950; opacity: 1.0;">
+                        <a href ="https://meet.google.com/lookup/hh3fez4436" target="_blank">PL</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="container" style="margin-top: -100px;">
+            <tbody>
+                <tr>
+                    <td style="background-color: #6C5C75; opacity: 1.0;">
+                      <a href ="https://meet.google.com/lookup/husoxbo6qq" target="_blank">OE1  -  PD<br>Mr.S.Balu Mahindiran</a></td>
+                    <td style="background-color: #6C5C75; opacity: 1.0;">
+                      <a href ="https://meet.google.com/lookup/fzjyto5mp2" target="_blank">OE1  -  PD<br>Mr.A.Sathish Kumar</a></a></td>
+                    <td style="background-color: #6C5C75; opacity: 1.0;">
+                      <a href ="https://meet.google.com/lookup/bb6shmgprs" target="_blank">OE2  -  DM<br>Mr.S.C.Boobalan</a></a></td>
+                    <td style="background-color: #6C5C75; opacity: 1.0;">
+                      <a href ="https://meet.google.com/lookup/hqjqdps4t4" target="_blank">OE1  -  Robotics<br>Dr.R.Manikandan</a></a></td>
+                    <td style="background-color: #6C5C75; opacity: 1.0;">
+                      <a href ="https://meet.google.com/lookup/fslsicxb7q" target="_blank">OE2  -  DM<br>Dr.R.Chandra Devi</a></a></td>
+                </tr>
+            </tbody>
+        </table>
+</body>
+</html>
+
+<!-- 
+
+cb   -  https://meet.google.com/lookup/eleyr52gqc
+
+ir   -  https://meet.google.com/lookup/c4hlgzpwmy
+
+dwdm - https://meet.google.com/lookup/f3bik4zbua
+
+placement  - https://meet.google.com/lookup/hh3fez4436
+
+project - https://meet.google.com/lookup/chixi53uq6
+
+iot - https://meet.google.com/lookup/dtx5e46mog
+
+iot lab - https://meet.google.com/lookup/apihtt4bam
+
+
+pd (oe-1) batch1 - https://meet.google.com/lookup/husoxbo6qq
+          batch2 - https://meet.google.com/lookup/fzjyto5mp2
+           robo  - https://meet.google.com/lookup/hqjqdps4t4
+
+dm (oe-2) batch1 - https://meet.google.com/lookup/bb6shmgprs
+          batch2 - https://meet.google.com/lookup/fslsicxb7q 
+
+-->
